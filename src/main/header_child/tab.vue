@@ -1,6 +1,6 @@
 <template>
   <tab bar-active-color='#e76081' active-color='#e76081' :line-width=1 :id="searchBarFixed == true ? 'tab' :''" class="tabs">
-  <tab-item v-for="(item, index) in arr" :key='index'>{{item}}</tab-item>
+  <tab-item v-for="(item, index) in arr" :key='index'>{{item.cat_name}}</tab-item>
   </tab>
 </template>
 
@@ -22,7 +22,7 @@ export default {
   methods: {
     cont(){
       this.$http.get('/api/home/index').then((res) =>{
-        console.log(res);
+        this.arr = res.data.cart_list
       })
     },
     onItemClick (index) {

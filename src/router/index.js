@@ -5,8 +5,7 @@ import find from '../main/find'
 import myself from '../main/myself'
 import child from '../main/section_child/components/index'
 Vue.use(Router)
-
-export default new Router({
+const routes = new Router({
   mode: 'history',
   routes: [
     {
@@ -29,9 +28,11 @@ export default new Router({
       component: myself
     },
     {
-      path: '/projectDetail',
-      name: 'name',
+      path: '/projectDetail/:id',
+      name: 'ProjectDetail',
       component: child
     }
   ]
 })
+
+export default routes;

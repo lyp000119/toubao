@@ -25,7 +25,6 @@ export default {
                         product_id
                     }
                 }).then((res) =>{
-                    console.log(res);
                     resolve(res);
                 })
             })

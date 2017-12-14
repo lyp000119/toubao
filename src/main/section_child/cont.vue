@@ -30,6 +30,9 @@ export default {
     this.fn();
     document.addEventListener("scroll", this.scroll);
   },
+  destroyed () {
+      window.removeEventListener('scroll', this.scroll)
+  },
   methods: {
     fn() {
       this.$store.dispatch("MD/listcont", {
@@ -37,7 +40,6 @@ export default {
           page_size: 10
         })
         .then((res) => {
-          console.log(res);
           this.arr = [...this.arr, ...res.data.list];
         });
     },
@@ -56,12 +58,7 @@ export default {
       }
     },
     childs (val) {
-      this.$store.dispatch('MD/childlist',{
-        product_id:val
-      }).then((res) =>{
-        console.log(res);
-        this.$router.push('/projectDetail:"val"')
-      })
+        this.$router.push(`/projectDetail/${val}`)
     }
   }
 };
