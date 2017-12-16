@@ -31,7 +31,7 @@ export default {
     document.addEventListener("scroll", this.scroll);
   },
   destroyed () {
-      window.removeEventListener('scroll', this.scroll)
+      document.removeEventListener('scroll', this.scroll)
   },
   methods: {
     fn() {
@@ -48,6 +48,7 @@ export default {
       let winH = window.innerHeight;
       let bodyH = document.body.scrollHeight;
       if (scrollY + winH >= bodyH - 20) {
+        console.log('加载数据');
         if (this.flag) {
           this.page += 1;
           this.fn();

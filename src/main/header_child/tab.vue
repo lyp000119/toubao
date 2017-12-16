@@ -38,6 +38,9 @@ export default {
       }
     },
   },
+  destroyed () {
+      document.removeEventListener('scroll', this.handleScroll)
+  },
   components: {
     Tab,
     TabItem

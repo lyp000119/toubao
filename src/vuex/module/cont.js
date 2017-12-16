@@ -14,7 +14,6 @@ export default {
                     }
                 }).then((res) =>{
                     resolve(res);
-                    // this.arr = [...this.arr,...res.data.list]
                 })
             } )
         },

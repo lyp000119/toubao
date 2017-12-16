@@ -1,9 +1,9 @@
 <template>
+
   <div id="app">
     <mains/>
   </div>
 </template>
-
 <script>
 import mains from './main/index'
 export default {
