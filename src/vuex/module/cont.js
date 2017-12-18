@@ -15,7 +15,7 @@ export default {
                 }).then((res) =>{
                     resolve(res);
                 })
-            } )
+            })
         },
         childlist ({commit}, {product_id}) {
             return new Promise((resolve, reject) =>{

@@ -21,7 +21,7 @@
     <checks :nums = 'datas' :numbers='numbers' />
     <detailsss :data='datas'/>
     </div>
-    <genes v-if="falg" :genescont='genescont' :nums='nums' :logo='logo' @fun='flagfn'/>
+    <genes v-if="falg" :genescont='genescont' :product='nums' :logo='logo' @fun='flagfn'/>
     <footer id="footer">
       <ul>
         <li><span>联系客服</span></li>

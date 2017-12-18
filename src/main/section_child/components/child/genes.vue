@@ -13,7 +13,7 @@
             <span>{{item.label}}:</span>
             <span>{{item.value}}</span>
         </p>
-        <popup-picker v-else :title="item.label" :data='nums()' v-model="item.value.split('')" value-text-align="left" id="list"></popup-picker>
+        <popuppicker v-else-if='item.type == "list"' :title="item.label" :datas='nums()' :defaults='item.value' id="list"></popuppicker>
         </li>
     </ul>
     </div>
@@ -23,13 +23,14 @@
 </template>
 
 <script>
-import {Group, Cell, PopupPicker} from 'vux'
+import {Group, Cell} from 'vux';
+import popuppicker from '../../../../components/popuppicker';
 export default {
     name: 'genes',
     components:{
         Group,
         Cell,
-        PopupPicker
+        popuppicker
     },
     props:{
         genescont:{
@@ -52,6 +53,7 @@ export default {
     data () {
        return {
             contflag:false,
+            numbers:'1万元',
             array:[['小米', 'iPhone', '华为', '情怀', '三星', '其他', '不告诉你']]
         }
     },
