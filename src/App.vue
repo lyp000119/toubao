@@ -10,6 +10,9 @@ export default {
   name: 'app',
   components:{
     mains
+  },
+  created(){
+    console.log(this.$store.state.MD.pirce)
   }
 }
 </script>
@@ -25,6 +28,6 @@ body,html{
 }
 #app{
   width: 100%;
-  height:100%;
+  height:auto;
 }
 </style>

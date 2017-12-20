@@ -13,15 +13,18 @@
             <span>{{item.label}}:</span>
             <span>{{item.value}}</span>
         </p>
-        <popuppicker v-else-if='item.type == "list"' :title="item.label" :datas='nums()' :defaults='item.value' id="list"></popuppicker>
+        <popuppicker v-else-if='item.type == "list"' :title="item.label" :datas='nums()' v-model='genes[item.gene_key]' :defaults='item.value' id="list" @input='inputs'></popuppicker>
         </li>
     </ul>
+    <div class="footer">
+        <span>{{this.$store.state.money}}</span>
+        <span>立即投保</span>
+    </div>
     </div>
     </transition>
 </div>
 </transition>
 </template>
-
 <script>
 import {Group, Cell} from 'vux';
 import popuppicker from '../../../../components/popuppicker';
@@ -54,7 +57,12 @@ export default {
        return {
             contflag:false,
             numbers:'1万元',
-            array:[['小米', 'iPhone', '华为', '情怀', '三星', '其他', '不告诉你']]
+            ids:'',
+            genes:{}
+        }
+    },
+    watch:{
+        genes(n,o){
         }
     },
     mounted () {
@@ -64,9 +72,27 @@ export default {
         })
     },
     created () {
-        
+        let that = this
+        this.genescont.map((item,index) =>{
+            this.$set(that.genes, item.gene_key, item.value)
+            // that.genes[item.gene_key] = item.value
+        })
+        console.log(this.genes);
+        this.$watch(function(){
+            return that.ids
+        },(o,n) =>{
+                this.$store.dispatch('MD/money',{
+                    product_id:this.$route.params.id,
+                    genes:that.genes
+                }).then((res) =>{
+                    this.$store.state.money = res[1].data.price
+                })
+        })
     },
     methods:{
+        inputs (val) {
+            this.ids = val;
+        },
         beforeEnter () {
             this.contflag = true
         },
@@ -75,12 +101,10 @@ export default {
             this.$emit('fun', false);
         },
         nums () {
-            // let that = this
             let arrar = []
             let arrs = []
             for(var i=0;i<this.genescont.length;i++){
                 if(this.genescont[i].type == "list") {
-                    console.log(this.genescont[i].options)
                     let genescont = JSON.parse(this.genescont[i].options)
                     for(var i=genescont.step.min;i<genescont.step.max;i+=genescont.step.step){
                          arrar.push(i+genescont.step.unit)
@@ -176,6 +200,31 @@ export default {
                 }
             }
         }
+    }
+}
+.footer{
+    position: absolute;
+    bottom:0;
+    left:0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    span{
+        padding:10px 0;
+    }
+    span:nth-child(1){
+        width: 70%;
+        height: 100%;
+        padding-left:10px;
+        color:#ff4774;
+        font-size: 16px;
+    }
+    span:nth-child(2){
+        width: 30%;
+        height: 100%;
+        background: #ff4774;
+        color:#fff;
+        text-align: center;
     }
 }
 </style>

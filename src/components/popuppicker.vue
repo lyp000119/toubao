@@ -1,11 +1,6 @@
 <template>
-<PopupPicker
-    :title='title',
-    :data='datas',
-    value-text-align = 'left',
-    v-module = 'valueArr'
->
-</PopupPicker>
+<popup-picker :title="title" :data="datas" v-model="valueArr">
+</popup-picker>
 </template>
 
 <script>
@@ -15,20 +10,18 @@ export default {
     components:{
         PopupPicker
     },
-    props:['datas', 'title','defaults'],
+    props:['datas', 'title', 'defaults'],
     data () {
         return {
-            valueArr:[],
+            valueArr:[]
         }
     },
     watch:{
-        valueArr (oldVal, newVal){
-            console.log(oldVal);
-            console.log(newVal);
-        }  
+        valueArr(newval, oldval){
+            this.$emit('input', newval[0])
+        }
     },
     created () {
-        console.log(this.datas, this.title, this.defaults)
         this.valueArr.push(this.defaults)
     }
 }

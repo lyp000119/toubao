@@ -4,14 +4,22 @@ import indexs from '@/main/home'
 import find from '../main/find'
 import myself from '../main/myself'
 import child from '../main/section_child/components/index'
+import details from '../main/find_components/details'
 Vue.use(Router)
 const routes = new Router({
   mode: 'history',
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  },
   routes: [
     {
       path: '/',
       redirect: '/home',
-      component: indexs
+      component: indexs,
     },
     {
       path: '/home',
@@ -31,6 +39,11 @@ const routes = new Router({
       path: '/projectDetail/:id',
       name: 'ProjectDetail',
       component: child
+    },
+    {
+      path: '/details/:id',
+      name: 'details',
+      component: details
     }
   ]
 })

@@ -26,7 +26,7 @@
       <ul>
         <li><span>联系客服</span></li>
         <li>
-        <span>1102.22</span>
+        <span>{{this.$store.state.money}}</span>
         <span @click='flagfn'>立即投保</span>
         </li>
       </ul>

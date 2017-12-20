@@ -1,7 +1,8 @@
 <template>
 <div class="wrap">
-    
+    <keep-alive include="home">
     <router-view></router-view>
+    </keep-alive>
     <footer>
         <footerTab/>
     </footer>
@@ -23,22 +24,24 @@ export default {
 <style lang='less'>
 .wrap{
     width: 100%;
-    height:100%;
+    height:auto;
     display: flex;
+    box-sizing: border-box;
+    padding-bottom: 50px;
     flex-direction: column;
+    .big{
+        flex-shrink: 1;
+        flex-grow: 1;
+        margin:5px 0;
+    }
     footer{
         position: fixed;
         bottom:0;
         left:0;
         width: 100%;
         height: auto;
-        flex-shrink: 0
     }
-    .big{
-        flex-shrink: 1;
-        flex-grow: 1;
-        margin:5px 0;
-    }
+
 }
 // section{
 //     width: 100%;

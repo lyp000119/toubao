@@ -4,7 +4,7 @@ import MD from './module/cont';
 vue.use(vuex);
 const store = new vuex.Store({
     state:{
-
+        money:''
     },
     mutations:{
 
