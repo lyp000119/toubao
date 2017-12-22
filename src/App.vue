@@ -10,9 +10,6 @@ export default {
   name: 'app',
   components:{
     mains
-  },
-  created(){
-    console.log(this.$store.state.MD.pirce)
   }
 }
 </script>

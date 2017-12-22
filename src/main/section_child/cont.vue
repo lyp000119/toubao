@@ -30,6 +30,9 @@ export default {
     this.fn();
     document.addEventListener("scroll", this.scroll);
   },
+  deactivated () {
+      document.removeEventListener('scroll', this.scroll)
+  },
   destroyed () {
       document.removeEventListener('scroll', this.scroll)
   },

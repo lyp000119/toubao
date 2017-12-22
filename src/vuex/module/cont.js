@@ -2,6 +2,19 @@ import axios from 'axios';
 export default {
     namespaced: true,
     actions: {
+        job({commit},{
+            product_id
+        }){
+            return new Promise ((resolve, reject) =>{
+                axios.get('/api/insured/job',{
+                    params:{
+                        product_id
+                    }
+                }).then((res) =>{
+                    resolve(res);
+                })
+            })
+        },
         money({commit},{
             product_id,
             genes
@@ -28,7 +41,6 @@ export default {
                         'Content-Type': 'application/x-www-form-urlencoded'
                       }
                 }).then((res) =>{
-                    console.log(res);
                     resolve([200, res])
                 })
             })
@@ -43,7 +55,6 @@ export default {
                     }
                 }).then((res) =>{
                     resolve([200, res])
-                    console.log(res);
                 })
             })
         },
@@ -59,7 +70,6 @@ export default {
                     }
                 }).then((res) =>{
                     resolve([200, res])
-                    console.log(res);
                 })
             })
         },

@@ -1,5 +1,6 @@
 <template>
   <div class="detail">
+    <Scroller lock-x scrollbarY >
     <div id="sections">
     <div class="title">
       <img :src="nums.cover" alt="">
@@ -21,6 +22,7 @@
     <checks :nums = 'datas' :numbers='numbers' />
     <detailsss :data='datas'/>
     </div>
+    </Scroller>
     <genes v-if="falg" :genescont='genescont' :product='nums' :logo='logo' @fun='flagfn'/>
     <footer id="footer">
       <ul>
@@ -36,7 +38,7 @@
 </template> 
 
 <script>
-import { Tab, TabItem, Swiper,Icon} from 'vux';
+import { Tab, TabItem, Swiper,Icon, Scroller} from 'vux';
 import checks from './child/check.vue';
 import details from './child/details'
 import genes from './child/genes'
@@ -60,7 +62,8 @@ export default {
       checks,
       detailsss:details,
       Icon,
-      genes
+      genes,
+      Scroller
     },
     created(){
       this.fn()
@@ -75,13 +78,14 @@ export default {
         this.$store.dispatch('MD/childlist',{
         product_id: this.$route.params.id
       }).then((res) =>{
+        this.$store.state.money = res.data.product.price
         this.nums = res.data.product
+        console.log(res.data.product)
         this.ress = res.data.options
         this.datas= res.data;
         this.genescont = res.data.genes
         this.logo = res.data.company.logo
         this.numbers = res.data.plan_list.length
-        console.log(res);
         })
       },
       flagfn(){

@@ -8,7 +8,7 @@
         <span>{{cont.label}}</span>
         <span @click='close'>X</span>
         </p>
-        <p>{{cont.description}}</p>
+        <p v-html='cont.description'></p>
     </div>
     </transition>
 </div>

@@ -47,7 +47,7 @@ export default {
 }
 </script>
 
-<style lang='less' scoped>
+<style lang='less'>
 .box{
   overflow: hidden;
 }
